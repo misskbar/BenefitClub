@@ -1,0 +1,9 @@
+package com.prisma.data.local.cache
+
+
+const val BC_ACCOUNT_TABLE_NAME = "BC_ACCOUNT_TABLE_NAME"
+const val BC_VALIDATIONS_TABLE_NAME = "BC_VALIDATIONS_TABLE_NAME"
+const val BC_USER_EMAIL = "BC_USER_EMAIL_TABLE_NAME"
+const val BC_ADDRESS_TABLE_NAME = "BC_ADDRESS_TABLE_NAME"
+
+const val DATABASE_NAME = "bc-db"

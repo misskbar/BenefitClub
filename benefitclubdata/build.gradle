@@ -72,36 +72,26 @@ android {
 afterEvaluate {
     publishing {
         publications {
-
-            integracion(MavenPublication) {
-                from components.integracion
-                groupId = 'com.todopago.data'
-                artifactId = 'integracionTodopagoData'
-                version = android.defaultConfig.versionName
-            }
-
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.todopago.data'
-                artifactId = 'releaseTodopagoData'
-                version = android.defaultConfig.versionName
-            }
-
-            releaseDebug(MavenPublication) {
-                from components.releaseDebug
-                groupId = 'com.todopago.data'
-                artifactId = 'releaseDebugTodopagoData'
-                version = android.defaultConfig.versionName
-            }
-
             qa(MavenPublication) {
+                artifact sourcesJar
                 from components.qa
-                groupId = 'com.todopago.data'
-                artifactId = 'qaTodopagoData'
+//                groupId = 'com.prisma.benefitclub'
+                artifactId = 'qaData'
                 version = android.defaultConfig.versionName
             }
-
         }
+    }
+}
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        archiveClassifier.set("sources")
+        from android.sourceSets.main.java.srcDirs
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        archiveClassifier.set("sources")
+        from sourceSets.main.allSource
     }
 }
 

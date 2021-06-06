@@ -1,5 +1,5 @@
-include ':domain'
+include ':di'
 include ':domain'
 include ':benefitclubdata'
-include ':app'
+include ':benefitclubpresentation'
 rootProject.name = "BenefitClub"

@@ -15,14 +15,42 @@ buildscript {
     }
 }
 
+plugins {
+    id "java-gradle-plugin"
+    id "maven"
+    id "maven-publish"
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+subprojects {
+    apply plugin: "maven-publish"
+}
+
 allprojects {
+    group = "com.prisma.benefitclub"
+    version = "1.0.0"
     repositories {
         google()
         jcenter()
+        mavenCentral()
         mavenLocal()
+        maven { url "http://pay.cards/maven" }
+        maven {
+            url "https://artifactory.corp.vusecurity.com/artifactory/libs-release-local"
+            credentials {
+                username = "${artifactory_username}"
+                password = "${artifactory_password}"
+            }
+        }
+        maven { url "https://jitpack.io" }
+        flatDir { dirs 'libs' }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
